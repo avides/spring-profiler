@@ -17,12 +17,9 @@ public class LoggingProfilingHandler implements ProfilingHandler
     {
         if ((allowedMillis > 0) && (duration > allowedMillis))
         {
-            if (log.isWarnEnabled())
-            {
-                log.warn(generateLoggingMessage(id, duration, allowedMillis));
-            }
+            log.warn(generateLoggingMessage(id, duration, allowedMillis));
         }
-        else if (log.isDebugEnabled())
+        else
         {
             log.debug(generateLoggingMessage(id, duration, allowedMillis));
         }

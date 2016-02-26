@@ -1,6 +1,7 @@
 package com.avides.spring.profiler;
 
 import static com.avides.spring.profiler.Profiler.startProfiling;
+import static org.springframework.util.ReflectionUtils.makeAccessible;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -56,8 +57,9 @@ public class ProfilingExecutor
         return profilingHandlers;
     }
 
-    private String getParameterTypes(Method method)
+    static String getParameterTypes(Method method)
     {
+        makeAccessible(method);
         StringBuilder builder = new StringBuilder();
         for (Class<?> type : method.getParameterTypes())
         {
