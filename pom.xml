@@ -5,26 +5,28 @@
 	<name>spring-profiler</name>
 	<description>Enables simple profiling of methods or code-snippets in spring-projects</description>
 	<url>https://github.com/avides/spring-profiler</url>
-	<version>0.0.3-RELEASE</version>
+	<version>0.0.4-RELEASE</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<cobertura.version>2.7</cobertura.version>
 		<coveralls.version>4.1.0</coveralls.version>
+		<powermock.version>1.6.4</powermock.version>
+        <easymock.version>3.4</easymock.version>
 	</properties>
-	
+
 	<developers>
 		<developer>
 			<name>Martin Schumacher</name>
 			<email>mschumacher@avides.com</email>
 		</developer>
 	</developers>
-	
+
 	<organization>
-        <name>Avides MEDIA AG</name>
-        <url>http://www.avides.com</url>
-    </organization>
+		<name>Avides MEDIA AG</name>
+		<url>http://www.avides.com</url>
+	</organization>
 
 	<scm>
 		<url>https://github.com/avides/spring-profiler</url>
@@ -62,10 +64,10 @@
 			<version>1.8.8</version>
 		</dependency>
 		<dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.8.8</version>
-        </dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.8</version>
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
@@ -76,6 +78,30 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>${easymock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-easymock</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.easytesting</groupId>
+			<artifactId>fest-assert</artifactId>
+			<version>1.4</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
