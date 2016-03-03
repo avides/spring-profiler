@@ -17,11 +17,21 @@
 	</properties>
 
 	<developers>
-		<developer>
-			<name>Martin Schumacher</name>
-			<email>mschumacher@avides.com</email>
-		</developer>
-	</developers>
+        <developer>
+            <id>mschumacher</id>
+            <name>Martin Schumacher</name>
+            <email>mschumacher@avides.com</email>
+            <organization>Avides MEDIA AG</organization>
+            <organizationUrl>http://www.avides.com</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Berlin</timezone>
+            <properties>
+                <picUrl>http://www.gravatar.com/avatar/cd2a7afee470dae133ab370f2c101bea?s=400</picUrl>
+            </properties>
+        </developer>
+    </developers>
 
 	<organization>
 		<name>Avides MEDIA AG</name>
