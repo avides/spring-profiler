@@ -1,6 +1,5 @@
 package com.avides.spring.profiler;
 
-import static com.avides.spring.profiler.Profiler.generateLoggingMessage;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import org.slf4j.Logger;
@@ -8,7 +7,7 @@ import org.slf4j.Logger;
 /**
  * @author Martin Schumacher
  */
-public class LoggingProfilingHandler implements ProfilingHandler
+public class LoggingProfilingHandler extends AbstractProfilingHandler
 {
     private static final Logger log = getLogger(LoggingProfilingHandler.class);
 

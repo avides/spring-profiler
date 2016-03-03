@@ -1,11 +1,9 @@
 package com.avides.spring.profiler;
 
-import static com.avides.spring.profiler.Profiler.generateLoggingMessage;
-
 /**
  * @author Martin Schumacher
  */
-public class SysoutProfilingHandler implements ProfilingHandler
+public class SysoutProfilingHandler extends AbstractProfilingHandler
 {
     @Override
     public void profile(String id, long start, long duration, long allowedMillis)

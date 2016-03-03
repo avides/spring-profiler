@@ -1,12 +1,11 @@
 package com.avides.spring.profiler;
 
 import static com.avides.spring.profiler.Profiler.startProfiling;
-import static org.springframework.util.ReflectionUtils.makeAccessible;
+import static com.avides.spring.profiler.ProfilerUtils.collectProfilingHandlers;
+import static com.avides.spring.profiler.ProfilerUtils.getParameterTypes;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -38,37 +37,10 @@ public class ProfilingExecutor
             id = "method " + method.getDeclaringClass().getName() + "." + method.getName() + "(" + getParameterTypes(method) + ")";
         }
         long allowedMillis = profiling.allowedMillis();
-        Collection<ProfilingHandler> profilingHandlers = collectProfilingHandlers(profiling);
+        Collection<ProfilingHandler> profilingHandlers = collectProfilingHandlers(context, profiling);
         Profiler profiler = startProfiling(id, profilingHandlers);
         Object result = pjp.proceed();
         profiler.stop(allowedMillis);
         return result;
-    }
-
-    private Collection<ProfilingHandler> collectProfilingHandlers(Profiling profiling)
-    {
-        Class<? extends ProfilingHandler>[] profilingHandlerClasses = profiling.profilingHandlerBeanClasses();
-        List<ProfilingHandler> profilingHandlers = new ArrayList<>();
-        for (Class<? extends ProfilingHandler> profilingHandlerClass : profilingHandlerClasses)
-        {
-            ProfilingHandler profilingHandler = context.getBean(profilingHandlerClass);
-            profilingHandlers.add(profilingHandler);
-        }
-        return profilingHandlers;
-    }
-
-    static String getParameterTypes(Method method)
-    {
-        makeAccessible(method);
-        StringBuilder builder = new StringBuilder();
-        for (Class<?> type : method.getParameterTypes())
-        {
-            if (builder.length() > 0)
-            {
-                builder.append(", ");
-            }
-            builder.append(type.getName());
-        }
-        return builder.toString();
     }
 }
