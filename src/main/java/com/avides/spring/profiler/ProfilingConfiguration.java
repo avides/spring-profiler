@@ -1,10 +1,12 @@
 package com.avides.spring.profiler;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Martin Schumacher
  */
+@Configuration
 public class ProfilingConfiguration
 {
     @Bean
