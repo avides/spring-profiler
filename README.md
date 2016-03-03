@@ -50,7 +50,13 @@ public class ProfilingConfiguration
     @Bean
     public ProfilingExecutor profilingExecutor()
     {
-        return new ProflingExecutor();
+        return new ProfilingExecutor();
+    }
+    
+    @Bean
+    public LoggingProfilingHandler loggingProfilingHandler()
+    {
+        return new LoggingProfilingHandler();
     }
 }
 
@@ -73,4 +79,4 @@ execution time for method anyClass.anyMethod(): 102ms
 Explicit ProfilingHandlers and allowedMillis can be set in the @Profiling-annotation
 
 #### Profiling of methods simply by annotation (Spring-Boot-example)
-This will work the same way as in the example above, but instead of creating a ProfilingExecutor in a Configuration-class, you can simply add an @EnableProfiling-annotation at any of your configuration-classes (or Application-class)
+This will work the same way as in the example above, but instead of creating a ProfilingExecutor and the used ProfilingHandler (in this case the LoggingProfilingHandler) in a Configuration-class, you can simply add an @EnableProfiling-annotation at any of your configuration-classes (or Application-class)
