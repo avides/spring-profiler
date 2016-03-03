@@ -44,22 +44,6 @@ Of course, you can give your own ProfilingHandler-implementation (and even sever
 
 #### Profiling of methods simply by annotation (only supported in a spring-application)
 ```java
-@Configuration
-public class ProfilingConfiguration
-{
-    @Bean
-    public ProfilingExecutor profilingExecutor()
-    {
-        return new ProfilingExecutor();
-    }
-    
-    @Bean
-    public LoggingProfilingHandler loggingProfilingHandler()
-    {
-        return new LoggingProfilingHandler();
-    }
-}
-
 @Component
 public class anyClass
 {
@@ -71,12 +55,9 @@ public class anyClass
     }
 }
 ```
-After executing the method "anyMethod", it will give you a log-message (debug-level) that looks similar to this:
+To get this working, simply add an @EnableProfiling-annotation at any of your configuration-classes (or the Application-class). After executing the method "anyMethod", it will give you a log-message (debug-level) that looks similar to this:
 
 ```text
 execution time for method anyClass.anyMethod(): 102ms
 ```
-Explicit ProfilingHandlers and allowedMillis can be set in the @Profiling-annotation
-
-#### Profiling of methods simply by annotation (Spring-Boot-example)
-This will work the same way as in the example above, but instead of creating a ProfilingExecutor and the used ProfilingHandler (in this case the LoggingProfilingHandler) in a Configuration-class, you can simply add an @EnableProfiling-annotation at any of your configuration-classes (or Application-class)
+Explicit ProfilingHandlers and allowedMillis (explained in example above) can be set via the @Profiling-annotation-attributes (which also are well documented in javadoc)
