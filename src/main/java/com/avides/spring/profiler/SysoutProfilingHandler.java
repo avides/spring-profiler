@@ -8,7 +8,7 @@ public class SysoutProfilingHandler extends AbstractProfilingHandler
     @Override
     public void profile(String id, long start, long duration, long allowedMillis)
     {
-        if ((allowedMillis > 0) && (duration > allowedMillis))
+        if ((allowedMillis > -1) && (duration > allowedMillis))
         {
             System.out.println("WARNING: " + generateLoggingMessage(id, duration, allowedMillis));
         }

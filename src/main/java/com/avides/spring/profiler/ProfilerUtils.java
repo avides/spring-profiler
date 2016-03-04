@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -14,9 +16,30 @@ import org.springframework.context.ApplicationContext;
  */
 public abstract class ProfilerUtils
 {
-    public static String getParameterTypes(Method method)
+    public static Method getMethod(ProceedingJoinPoint pjp) throws NoSuchMethodException, SecurityException
+    {
+        Method method = ((MethodSignature) pjp.getSignature()).getMethod();
+        if (method.getDeclaringClass().isInterface())
+        {
+            method = pjp.getTarget().getClass().getDeclaredMethod(method.getName(), method.getParameterTypes());
+        }
+        return method;
+    }
+
+    public static String getIdentifier(Method method)
     {
         makeAccessible(method);
+        Profiling profiling = method.getAnnotation(Profiling.class);
+        String id = profiling.value();
+        if (id.isEmpty())
+        {
+            id = "method " + method.getDeclaringClass().getName() + "." + method.getName() + "(" + getParameterTypes(method) + ")";
+        }
+        return id;
+    }
+
+    public static String getParameterTypes(Method method)
+    {
         StringBuilder builder = new StringBuilder();
         for (Class<?> type : method.getParameterTypes())
         {

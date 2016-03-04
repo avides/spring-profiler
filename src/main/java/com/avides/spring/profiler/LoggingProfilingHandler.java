@@ -14,7 +14,7 @@ public class LoggingProfilingHandler extends AbstractProfilingHandler
     @Override
     public void profile(String id, long start, long duration, long allowedMillis)
     {
-        if ((allowedMillis > 0) && (duration > allowedMillis))
+        if ((allowedMillis > -1) && (duration > allowedMillis))
         {
             log.warn(generateLoggingMessage(id, duration, allowedMillis));
         }

@@ -11,7 +11,7 @@ spring-profiler
 <dependency>
     <groupId>com.avides.spring</groupId>
     <artifactId>spring-profiler</artifactId>
-    <version>0.0.4-RELEASE</version>
+    <version>0.0.5-RELEASE</version>
 </dependency>
 ```
 #### Simple example
@@ -26,6 +26,7 @@ This will give you a log-message (debug-level) that looks similar to this:
 ```text
 execution time for anyIdentifier: 102ms
 ```
+After stopping the profiler, you have access to some execution details, for example the exact execution-time by calling profiler.getDurationMillis()
 #### Example with explicit given ProfilingHandler and allowedMillis
 ```java
 Profiler profiler = Profiler.startProfiling("anyIdentifier", new SysoutProfilingHandler());
