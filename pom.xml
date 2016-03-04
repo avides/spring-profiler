@@ -5,7 +5,7 @@
 	<name>spring-profiler</name>
 	<description>Enables simple profiling of methods or code-snippets in spring-projects</description>
 	<url>https://github.com/avides/spring-profiler</url>
-	<version>0.0.6-RELEASE</version>
+	<version>0.0.7-RELEASE</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -175,6 +175,9 @@
 				<version>${cobertura.version}</version>
 				<configuration>
 					<format>xml</format>
+					<instrumentation>
+					   <exclude>**/*Configuration.class</exclude>
+					</instrumentation>
 				</configuration>
 			</plugin>
 			<plugin>
