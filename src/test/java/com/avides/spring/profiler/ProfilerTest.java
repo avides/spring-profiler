@@ -81,7 +81,7 @@ public class ProfilerTest
             }
             catch (Exception e)
             {
-                throw new RuntimeException(e);
+                throw new TestException();
             }
         });
         assertThat(profiler.getDurationMillis()).isGreaterThanOrEqualTo(40);
@@ -102,7 +102,7 @@ public class ProfilerTest
             }
             catch (Exception e)
             {
-                throw new RuntimeException(e);
+                throw new TestException();
             }
         });
         assertThat(profiler.getDurationMillis()).isGreaterThanOrEqualTo(40);
@@ -144,13 +144,18 @@ public class ProfilerTest
         assertThat(result.getResult()).isEqualTo("anyResult");
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = Exception.class)
     public void testProfileWithCallableAndException() throws Throwable
     {
         profile("anyId", () ->
         {
             Thread.sleep(40);
-            throw new RuntimeException("anyException");
+            throw new TestException();
         });
+    }
+
+    private class TestException extends RuntimeException
+    {
+        private static final long serialVersionUID = 877946325454086926L;
     }
 }
