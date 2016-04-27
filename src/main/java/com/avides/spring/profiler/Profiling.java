@@ -19,7 +19,7 @@ public @interface Profiling
 {
     /**
      * Identifier for this profiling, defaults to the annotated method-name
-     * 
+     *
      * @return the identifier-name
      */
     String value() default "";
@@ -27,15 +27,15 @@ public @interface Profiling
     /**
      * Allowed time for execution in milliseconds. If this value is exceeded,
      * debug-messages will turn into warn-messages
-     * 
+     *
      * @return allowed execution-time in milliseconds
      */
-    long allowedMillis() default 0;
+    long allowedMillis() default -1;
 
     /**
      * Array of LoggingHandlerClasses that should handle the profiling (and must
      * be in the ApplicationContext), default is the LoggingProfilingHandler
-     * 
+     *
      * @return Array of LoggingHandlerClasses
      */
     Class<? extends ProfilingHandler>[] profilingHandlerBeanClasses() default LoggingProfilingHandler.class;
