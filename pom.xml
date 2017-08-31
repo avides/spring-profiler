@@ -5,15 +5,15 @@
 	<name>spring-profiler</name>
 	<description>Enables simple profiling of methods or code-snippets in spring-projects</description>
 	<url>https://github.com/avides/spring-profiler</url>
-	<version>0.0.10-RELEASE</version>
+	<version>0.0.11-RELEASE</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<cobertura.version>2.7</cobertura.version>
 		<coveralls.version>4.1.0</coveralls.version>
-		<powermock.version>1.6.4</powermock.version>
-        <easymock.version>3.4</easymock.version>
+		<powermock.version>1.7.0</powermock.version>
+        <aspectj.version>1.8.8</aspectj.version>
 	</properties>
 
 	<developers>
@@ -55,7 +55,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.2.5.RELEASE</version>
+			<version>4.3.9.RELEASE</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>spring-expression</artifactId>
@@ -71,17 +71,17 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>1.8.8</version>
+			<version>${aspectj.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.8.8</version>
+			<version>${aspectj.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.18</version>
+			<version>1.7.21</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -93,7 +93,7 @@
 		<dependency>
 			<groupId>org.easymock</groupId>
 			<artifactId>easymock</artifactId>
-			<version>${easymock.version}</version>
+			<version>3.4</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -109,10 +109,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.easytesting</groupId>
-			<artifactId>fest-assert</artifactId>
-			<version>1.4</version>
-			<scope>test</scope>
+		    <groupId>org.assertj</groupId>
+		    <artifactId>assertj-core</artifactId>
+		    <version>3.8.0</version>
+		    <scope>test</scope>
 		</dependency>
 	</dependencies>
 

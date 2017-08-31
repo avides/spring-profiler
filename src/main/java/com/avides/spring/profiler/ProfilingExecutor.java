@@ -14,6 +14,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.DefaultParameterNameDiscoverer;
+import org.springframework.core.ParameterNameDiscoverer;
 
 /**
  * @author Martin Schumacher
@@ -24,20 +26,23 @@ public class ProfilingExecutor
     @Autowired
     private ApplicationContext context;
 
+    private ParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
+
     @Around("@annotation(com.avides.spring.profiler.Profiling)")
     public Object handleProfiledMethod(ProceedingJoinPoint pjp) throws Throwable
     {
         Method method = getMethod(pjp);
         Profiling profiling = method.getAnnotation(Profiling.class);
         String[] outputArgs = profiling.outputArgs();
+        String[] parameterNames = parameterNameDiscoverer.getParameterNames(method);
         Map<String, Object> args = new HashMap<>();
         if (outputArgs.length > 0)
         {
             for (String outputArg : outputArgs)
             {
-                for (int i = 0; i < method.getParameters().length; i++)
+                for (int i = 0; i < parameterNames.length; i++)
                 {
-                    if (method.getParameters()[i].getName().equals(outputArg))
+                    if (parameterNames[i].equals(outputArg))
                     {
                         args.put(outputArg, pjp.getArgs()[i]);
                     }

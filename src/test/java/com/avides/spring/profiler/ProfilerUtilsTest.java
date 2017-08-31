@@ -4,17 +4,15 @@ import static com.avides.spring.profiler.ProfilerUtils.collectProfilingHandlers;
 import static com.avides.spring.profiler.ProfilerUtils.getIdentifier;
 import static com.avides.spring.profiler.ProfilerUtils.getMethod;
 import static com.avides.spring.profiler.ProfilerUtils.getParameterTypes;
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.powermock.api.easymock.PowerMock.expectLastCall;
 import static org.powermock.api.easymock.PowerMock.replayAll;
-import static org.powermock.api.easymock.PowerMock.resetAll;
 import static org.powermock.api.easymock.PowerMock.verifyAll;
 
 import java.lang.reflect.Method;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.easymock.PowerMock;
@@ -28,13 +26,8 @@ import org.springframework.context.ApplicationContext;
 @RunWith(PowerMockRunner.class)
 public class ProfilerUtilsTest
 {
-    private @Mock ApplicationContext context;
-
-    @After
-    public void tearDown()
-    {
-        resetAll();
-    }
+    @Mock
+    private ApplicationContext context;
 
     @Test
     public void testGetParameterTypesFromMethod() throws NoSuchMethodException, SecurityException
