@@ -39,4 +39,7 @@ public @interface Profiling
      * @return Array of LoggingHandlerClasses
      */
     Class<? extends ProfilingHandler>[] profilingHandlerBeanClasses() default LoggingProfilingHandler.class;
+
+    String[] outputArgs() default
+    {};
 }
