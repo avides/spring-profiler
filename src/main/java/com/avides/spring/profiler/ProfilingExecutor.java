@@ -6,6 +6,8 @@ import static com.avides.spring.profiler.ProfilerUtils.getIdentifier;
 import static com.avides.spring.profiler.ProfilerUtils.getMethod;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -19,13 +21,29 @@ import org.springframework.context.ApplicationContext;
 @Aspect
 public class ProfilingExecutor
 {
-    private @Autowired ApplicationContext context;
+    @Autowired
+    private ApplicationContext context;
 
     @Around("@annotation(com.avides.spring.profiler.Profiling)")
     public Object handleProfiledMethod(ProceedingJoinPoint pjp) throws Throwable
     {
         Method method = getMethod(pjp);
         Profiling profiling = method.getAnnotation(Profiling.class);
-        return profile(getIdentifier(method), profiling.allowedMillis(), () -> pjp.proceed(), collectProfilingHandlers(context, profiling)).getResult();
+        String[] outputArgs = profiling.outputArgs();
+        Map<String, Object> args = new HashMap<>();
+        if (outputArgs.length > 0)
+        {
+            for (String outputArg : outputArgs)
+            {
+                for (int i = 0; i < method.getParameters().length; i++)
+                {
+                    if (method.getParameters()[i].getName().equals(outputArg))
+                    {
+                        args.put(outputArg, pjp.getArgs()[i]);
+                    }
+                }
+            }
+        }
+        return profile(getIdentifier(method), profiling.allowedMillis(), () -> pjp.proceed(), args, collectProfilingHandlers(context, profiling)).getResult();
     }
 }

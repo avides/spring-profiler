@@ -5,6 +5,8 @@ import static com.avides.spring.profiler.Profiler.startProfiling;
 import static java.util.Arrays.asList;
 import static org.fest.assertions.Assertions.assertThat;
 
+import java.util.Collections;
+
 import org.junit.Test;
 
 import com.avides.spring.profiler.Profiler.CallableProfilingResult;
@@ -49,7 +51,8 @@ public class ProfilerTest
     @Test
     public void testProfilingWithVarArgs() throws InterruptedException
     {
-        Profiler profiler = startProfiling("anyIdentifier", new SysoutProfilingHandler(), new LoggingProfilingHandler());
+        Profiler profiler = startProfiling("anyIdentifier", Collections.singletonMap("anyArg", "anyValue"), new SysoutProfilingHandler(),
+            new LoggingProfilingHandler());
         Thread.sleep(40);
         assertThat(profiler.stop().getDurationMillis()).isGreaterThanOrEqualTo(40);
         Thread.sleep(40);
