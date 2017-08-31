@@ -3,7 +3,7 @@ package com.avides.spring.profiler;
 import static com.avides.spring.profiler.Profiler.profile;
 import static com.avides.spring.profiler.Profiler.startProfiling;
 import static java.util.Arrays.asList;
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Collections;
 
