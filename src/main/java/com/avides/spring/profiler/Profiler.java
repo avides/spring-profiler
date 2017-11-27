@@ -121,7 +121,7 @@ public class Profiler
         Profiler profiler = startProfiling(id, args, profilingHandlers);
         try
         {
-            CallableProfilingResult<T> result = new CallableProfilingResult<T>(callable.call());
+            CallableProfilingResult<T> result = new CallableProfilingResult<>(callable.call());
             result.setProfiler(profiler.stop(allowedMillis));
             return result;
         }

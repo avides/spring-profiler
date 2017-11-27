@@ -11,7 +11,7 @@ spring-profiler
 <dependency>
     <groupId>com.avides.spring</groupId>
     <artifactId>spring-profiler</artifactId>
-    <version>0.0.11-RELEASE</version>
+    <version>0.1.0.RELEASE</version>
 </dependency>
 ```
 #### Simple example
